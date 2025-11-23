@@ -1,0 +1,21 @@
+# Node packages (very large, recreated by npm install)
+node_modules/
+
+# Production build output (Netlify will build on its own)
+dist/
+
+# macOS Finder metadata
+.DS_Store
+
+# Local environment variables (don’t commit secrets)
+.env
+
+# Vite cache
+.vite/
+
+# Debug logs
+npm-debug.log*
+
+# Editor settings folders (local-only)
+.vscode/
+.idea/
