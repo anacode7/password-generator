@@ -1,42 +1,46 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Set the correct character encoding so text renders reliably -->
-        <meta charset="utf-8">
-        <!-- Make layout adapt to device width for mobile-first design -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Link our main stylesheet (placed at project root) -->
-        <link rel="stylesheet" href="/index.css">
-        <!-- Descriptive title for accessibility and SEO -->
-        <title>Password Generator</title>
-    </head>
-    <body>
-        <!-- Page background wrapper to center the card visually -->
-        <main class="app" role="main">
-            <!-- Card element that matches the dark design reference -->
-            <section class="card" aria-labelledby="title">
-                <!-- Main heading with emphasized keyword to match visual accent -->
-                <h1 id="title" class="title">
-                    Generate a <span class="accent">random password</span>
-                </h1>
-                <!-- Short supportive sentence under the headline -->
-                <p class="subtitle">Never use an insecure password again.</p>
-                <!-- Primary action button that triggers generation of two passwords -->
-                <button id="generate-btn" class="btn" type="button">
-                    Generate passwords
-                </button>
-                <!-- Visual divider line as seen in the reference design -->
-                <hr class="divider" aria-hidden="true">
-                <!-- Results container holding two output elements -->
-                <div class="results" aria-live="polite">
-                    <!-- Output element for first password (screen readers will read updates) -->
-                    <output id="pwd1" class="pwd" aria-label="First generated password">—</output>
-                    <!-- Output element for second password -->
-                    <output id="pwd2" class="pwd" aria-label="Second generated password">—</output>
-                </div>
-            </section>
-        </main>
-        <!-- Load our script as an ES module (works with Vite build/dev) -->
-        <script type="module" src="/index.js"></script>
-    </body>
+  <head>
+    <!-- Set the correct character encoding so text renders reliably -->
+    <meta charset="utf-8" />
+    <!-- Make layout adapt to device width for mobile-first design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Link our main stylesheet (placed at project root) -->
+    <link rel="stylesheet" href="/index.css" />
+    <!-- Descriptive title for accessibility and SEO -->
+    <title>Password Generator</title>
+  </head>
+  <body>
+    <!-- Page background wrapper to center the card visually -->
+    <main class="app">
+      <!-- Card element that matches the dark design reference -->
+      <section class="card" aria-labelledby="title">
+        <!-- Main heading with emphasized keyword to match visual accent -->
+        <h1 id="title" class="title">
+          Generate a <span class="accent">random password</span>
+        </h1>
+        <!-- Short supportive sentence under the headline -->
+        <p class="subtitle">Never use an insecure password again.</p>
+        <!-- Primary action button that triggers generation of two passwords -->
+        <button id="generate-btn" class="btn" type="button">
+          Generate passwords
+        </button>
+        <!-- Visual divider line as seen in the reference design -->
+        <hr class="divider" aria-hidden="true" />
+        <!-- Results container holding two output elements -->
+        <div class="results" aria-live="polite">
+          <!-- Output element for first password (screen readers will read updates) -->
+          <output id="pwd1" class="pwd" aria-label="First generated password"
+            >—</output
+          >
+          <!-- Output element for second password -->
+          <output id="pwd2" class="pwd" aria-label="Second generated password"
+            >—</output
+          >
+        </div>
+      </section>
+    </main>
+    <!-- Load our script as an ES module (works with Vite build/dev) -->
+    <script type="module" src="/index.js"></script>
+  </body>
 </html>
