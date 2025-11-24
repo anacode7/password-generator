@@ -77,6 +77,37 @@ body {
   font-size: 1rem;
 }
 
+/* Length controls */
+.controls {
+  border: none;
+  padding: 0;
+  margin: 0 0 var(--space-3);
+}
+.controls__legend {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.controls__help {
+  color: var(--muted);
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+}
+.controls__options {
+  display: inline-flex;
+  gap: 10px;
+}
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #0b1220;
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+.radio input { accent-color: var(--green); }
+
 /* Primary CTA button styled in green with good focus states */
 .btn {
   appearance: none;
@@ -147,4 +178,5 @@ body {
     width: auto;
     padding: var(--space-4);
   }
+  .controls__options { gap: 8px; }
 }

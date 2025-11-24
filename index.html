@@ -20,11 +20,30 @@
           Generate a <span class="accent">random password</span>
         </h1>
         <!-- Short supportive sentence under the headline -->
-        <p class="subtitle">Never use an insecure password again.</p>
-        <!-- Primary action button that triggers generation of two passwords -->
-        <button id="generate-btn" class="btn" type="button">
-          Generate passwords
-        </button>
+                <p class="subtitle">Never use an insecure password again.</p>
+                <!-- Controls: choose password length -->
+                <fieldset class="controls" aria-describedby="length-help">
+                    <legend class="controls__legend">Password length</legend>
+                    <p id="length-help" class="controls__help">Choose how many characters</p>
+                    <div class="controls__options" role="radiogroup" aria-label="Password length">
+                        <label class="radio">
+                            <input type="radio" name="pwd-length" value="8" id="len8">
+                            <span>8</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="pwd-length" value="12" id="len12" checked>
+                            <span>12</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="pwd-length" value="16" id="len16">
+                            <span>16</span>
+                        </label>
+                    </div>
+                </fieldset>
+                <!-- Primary action button that triggers generation of two passwords -->
+                <button id="generate-btn" class="btn" type="button">
+                    Generate passwords
+                </button>
         <!-- Visual divider line as seen in the reference design -->
         <hr class="divider" aria-hidden="true" />
         <!-- Results container holding two output elements -->

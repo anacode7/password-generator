@@ -40,15 +40,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("generate-btn");
   const out1 = document.getElementById("pwd1");
   const out2 = document.getElementById("pwd2");
+  const lengthRadios = document.querySelectorAll('input[name="pwd-length"]');
 
   // Defensive checks to avoid runtime errors if IDs change
   if (!btn || !out1 || !out2) return;
 
-  // On button click, generate two independent 15-character passwords
+  // Helper: read selected length, default to 12 if none selected
+  function getSelectedLength() {
+    const selected = Array.from(lengthRadios).find(r => r.checked);
+    const value = selected ? parseInt(selected.value, 10) : 12;
+    if (![8,12,16].includes(value)) return 12;
+    return value;
+  }
+
+  // On button click, generate two independent passwords of chosen length
   btn.addEventListener("click", () => {
     try {
-      const p1 = generatePassword(15);
-      const p2 = generatePassword(15);
+      const len = getSelectedLength();
+      const p1 = generatePassword(len);
+      const p2 = generatePassword(len);
       // Update the output elements; aria-live will announce changes
       out1.textContent = p1;
       out2.textContent = p2;
