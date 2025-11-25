@@ -71,6 +71,34 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error(err);
     }
   });
+
+  // Copy-on-click for outputs (also supports Enter/Space)
+  function attachCopy(el) {
+    const copyNow = () => {
+      const text = (el.textContent || "").trim();
+      if (!text || text === "—") return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text)
+          .then(() => {
+            el.classList.add("copied");
+            setTimeout(() => el.classList.remove("copied"), 1200);
+          })
+          .catch((e) => {
+            console.error(e);
+          });
+      }
+    };
+    el.addEventListener("click", copyNow);
+    el.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        copyNow();
+      }
+    });
+  }
+
+  attachCopy(out1);
+  attachCopy(out2);
 });
 
 
