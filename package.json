@@ -1,6 +1,9 @@
 {
-  "name": "Scrim-s04k02i",
-  "description": "https://scrimba.com/fullstack-path-c0fullstack/~07p",
+  "name": "password-generator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Password generator app built with Vite",
+  "packageManager": "yarn@4.5.1",
   "scripts": {
     "start": "vite",
     "dev": "vite",
@@ -8,7 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vite": "latest"
+    "vite": "^7.2.4"
   },
   "devDependencies": {}
 }
