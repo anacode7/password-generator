@@ -108,6 +108,18 @@ body {
 }
 .radio input { accent-color: var(--green); }
 
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #0b1220;
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+.toggle input { accent-color: var(--green); }
+
 /* Primary CTA button styled in green with good focus states */
 .btn {
   appearance: none;

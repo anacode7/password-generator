@@ -1,11 +1,16 @@
 // 1) Character pool that passwords can use
 //    Includes uppercase, lowercase, digits, and common symbols
-const CHAR_POOL = [
-  "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
-  "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",
-  "0","1","2","3","4","5","6","7","8","9",
+const UPPER = [
+  "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"
+];
+const LOWER = [
+  "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"
+];
+const DIGITS = ["0","1","2","3","4","5","6","7","8","9"];
+const SYMBOLS = [
   "~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","{","[","}","]",",","|",":",";","<",">",".","?","/"
 ];
+const BASE_LETTERS = [...UPPER, ...LOWER];
 
 // 2) Safe random index helper using the Web Crypto API when available
 function randomIndices(count, modulo) {
@@ -21,17 +26,16 @@ function randomIndices(count, modulo) {
 }
 
 // 3) Build a password string of a given length from the pool
-function generatePassword(length = 15) {
-  // Basic validation to guard against empty character sets or invalid length
-  if (!Array.isArray(CHAR_POOL) || CHAR_POOL.length === 0) {
+function generatePassword(length = 15, pool) {
+  if (!Array.isArray(pool) || pool.length === 0) {
     throw new Error("Character pool is empty");
   }
   if (Number.isNaN(length) || length < 1) {
     throw new Error("Password length must be a positive integer");
   }
   // Create an array of random indices and map to characters
-  const idx = randomIndices(length, CHAR_POOL.length);
-  return idx.map(i => CHAR_POOL[i]).join("");
+  const idx = randomIndices(length, pool.length);
+  return idx.map(i => pool[i]).join("");
 }
 
 // 4) Wire up UI elements and events once the DOM is ready
@@ -41,6 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const out1 = document.getElementById("pwd1");
   const out2 = document.getElementById("pwd2");
   const lengthRadios = document.querySelectorAll('input[name="pwd-length"]');
+  const includeNumbersEl = document.getElementById("include-numbers");
+  const includeSymbolsEl = document.getElementById("include-symbols");
 
   // Defensive checks to avoid runtime errors if IDs change
   if (!btn || !out1 || !out2) return;
@@ -53,12 +59,22 @@ document.addEventListener("DOMContentLoaded", () => {
     return value;
   }
 
+  function currentPool() {
+    const withNumbers = includeNumbersEl ? includeNumbersEl.checked : true;
+    const withSymbols = includeSymbolsEl ? includeSymbolsEl.checked : true;
+    const parts = [BASE_LETTERS];
+    if (withNumbers) parts.push(DIGITS);
+    if (withSymbols) parts.push(SYMBOLS);
+    return parts.flat();
+  }
+
   // On button click, generate two independent passwords of chosen length
   btn.addEventListener("click", () => {
     try {
       const len = getSelectedLength();
-      const p1 = generatePassword(len);
-      const p2 = generatePassword(len);
+      const pool = currentPool();
+      const p1 = generatePassword(len, pool);
+      const p2 = generatePassword(len, pool);
       // Update the output elements; aria-live will announce changes
       out1.textContent = p1;
       out2.textContent = p2;
